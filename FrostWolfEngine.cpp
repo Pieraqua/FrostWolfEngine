@@ -10,8 +10,18 @@ int main()
     SystemOutput* outputModule = SystemOutput::getInstance();
     SystemInput* inputModule = SystemInput::getInstance();
     outputModule->printToConsole("Hello World!", SystemOutput::outputLevel::INFO);
+    inputModule->getUserInput();
+
+    outputModule->setMainViewport(FROSTWOLFLOGO_FILE);
+    outputModule->printViewports();
+
 
     inputModule->getUserInput();
+    outputModule->setMainViewport(MAIN_VIEWPORT_FILE);
+    outputModule->printViewports();
+    inputModule->getUserInput();
+    outputModule->cls();
+
 }
 
 // Executar programa: Ctrl + F5 ou Menu Depurar > Iniciar Sem Depuração

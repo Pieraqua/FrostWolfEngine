@@ -4,6 +4,35 @@ The images in this project are plain text files, with their contents sized to fi
 In general, only the Main and User command viewports will be overwritten.
 
 ## Viewports
+~~~
+____________________________________________________________________________________
+|                                                         ||                       |
+|                                                         ||                       |
+|                                                         ||                       |
+|                                                         ||                       |
+|                                                         ||                       |
+|                                                         ||                       |
+|                                                         ||                       |
+|                                                         ||                       |
+|                                                         ||                       |
+|                   MAIN VIEWPORT                         ||    LOGS VIEWPORT      |
+|                                                         ||                       |
+|                                                         ||                       |
+|                                                         ||                       |
+|                                                         ||                       |
+|                                                         ||                       |
+|                                                         ||                       |
+|                                                         ||                       |
+|                                                         ||                       |
+|                                                         ||                       |
+|_________________________________________________________||_______________________|
+____________________________________________________________________________________
+|                                                                                  |
+|                                USER COMMANDS VIEWPORT                            |
+|__________________________________________________________________________________|
+
+
+~~~
 ### Main
 The main viewport is a 60x21 block of text. It should be used to display the things that are happening in-game.
 

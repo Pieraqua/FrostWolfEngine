@@ -30,8 +30,6 @@ ________________________________________________________________________________
 |                                                                                  |
 |                                USER COMMANDS VIEWPORT                            |
 |__________________________________________________________________________________|
-
-
 ~~~
 ### Main
 The main viewport is a 60x21 block of text. It should be used to display the things that are happening in-game.

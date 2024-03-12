@@ -4,22 +4,29 @@
 #include <iostream>
 #include "SystemOutput.h"
 #include "SystemInput.h"
+#include "Utils.h"
 
 int main()
 {
     SystemOutput* outputModule = SystemOutput::getInstance();
     SystemInput* inputModule = SystemInput::getInstance();
     outputModule->printToConsole("Hello World!", SystemOutput::outputLevel::INFO);
-    inputModule->getUserInput();
+    inputModule->pause();
 
     outputModule->setMainViewport(FROSTWOLFLOGO_FILE);
     outputModule->printViewports();
+    inputModule->pause();
 
-
-    inputModule->getUserInput();
     outputModule->setMainViewport(MAIN_VIEWPORT_FILE);
     outputModule->printViewports();
-    inputModule->getUserInput();
+    
+    bool q_pressed = false;
+    while (!q_pressed)
+    {
+        if (inputModule->getKeyPressed() == 'q')
+            q_pressed = true;
+    }
+
     outputModule->cls();
 
 }

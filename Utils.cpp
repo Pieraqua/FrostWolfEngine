@@ -7,3 +7,8 @@ string Utils::to_lower(string str)
         ans.push_back(tolower(str.at(i)));
     return ans;
 }
+
+char Utils::to_lower(char c)
+{
+    return tolower(c);
+}

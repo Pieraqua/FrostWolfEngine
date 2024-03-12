@@ -71,15 +71,18 @@ void SystemOutput::printViewports()
     cls();
     fputs("\x1b[?25l", stdout);
     HANDLE      H = GetStdHandle(STD_OUTPUT_HANDLE);
-    COORD       pos = { 0,0 };
-    SetConsoleCursorPosition(H, pos);
-    printMainViewport();
-    pos = { 0, 21 };
+    COORD pos = { 0, 20 };
     SetConsoleCursorPosition(H, pos);
     printUserCommands();
-    pos = { 60, 0 };
+    pos = { 0,0 };
+    SetConsoleCursorPosition(H, pos);
+    printMainViewport();
+    pos = { 59, 0 };
     SetConsoleCursorPosition(H, pos);
     printLog(pos);
+
+    pos = { 0, 25 };
+    SetConsoleCursorPosition(H, pos);
 }
 
 void SystemOutput::printLogo()

@@ -14,9 +14,9 @@ void SystemOutput::printToConsole(string data, outputLevel level) {
 
 }
 
-SystemOutput::SystemOutput() : messageLog(23,19)
+SystemOutput::SystemOutput()
 {
-    setMainViewport(MAIN_VIEWPORT_FILE);
+    
 }
 
 SystemOutput::~SystemOutput()
@@ -47,10 +47,6 @@ void SystemOutput::setConsoleOutputEnabled(outputLevel level, bool val)
 	}
 }
 
-void SystemOutput::printToLog(string data)
-{
-    messageLog.addLog(data);
-}
 
 int SystemOutput::cls()
 {   // limpa a tela no windows, do jeito oficial
@@ -69,112 +65,4 @@ int SystemOutput::cls()
         origem, (LPDWORD)&total);
     SetConsoleCursorPosition(H, origem);
     return 0;
-}
-
-void SystemOutput::printViewports()
-{
-    cls();
-    fputs("\x1b[?25l", stdout);
-    HANDLE      H = GetStdHandle(STD_OUTPUT_HANDLE);
-    COORD pos = { 0, 20 };
-    SetConsoleCursorPosition(H, pos);
-    printUserCommands();
-    pos = { 0,0 };
-    SetConsoleCursorPosition(H, pos);
-    printMainViewport();
-    pos = { 59, 0 };
-    SetConsoleCursorPosition(H, pos);
-    printLog(pos);
-
-    pos = { 0, 25 };
-    SetConsoleCursorPosition(H, pos);
-}
-
-void SystemOutput::printLogo()
-{
-    FILE* viewport;
-    fopen_s(&viewport, FROSTWOLFLOGO_FILE, "r");
-    char s[1024];
-
-    HANDLE      H = GetStdHandle(STD_OUTPUT_HANDLE);
-    SetConsoleCursorPosition(H, {0,0});
-
-    if (viewport)
-    {
-        while ((fgets(s, sizeof s, viewport)) != NULL) {
-            printf("%s", s);
-        }
-
-    }
-    else printf("ERROR");
-}
-
-void SystemOutput::setMainViewport(const char* imagePath)
-{
-    strcpy_s(mainImagePath, imagePath);
-}
-
-void SystemOutput::printMainViewport()
-{
-    FILE* viewport;
-    fopen_s(&viewport, mainImagePath, "r");
-    char s[1024];
-
-    if (viewport)
-    {
-        while ((fgets(s, sizeof s, viewport)) != NULL) {
-            printf("%s", s);
-        }
-
-    }
-    else printf("ERROR");
-}
-
-void SystemOutput::printUserCommands()
-{
-    FILE* viewport;
-    fopen_s(&viewport, USER_COMMAND_VIEWPORT_FILE, "r");
-    char s[1024];
-
-    if (viewport)
-    {
-        while ((fgets(s, sizeof s, viewport)) != NULL) {
-            printf("%s", s);
-        }
-
-    }
-    else printf("ERROR");
-}
-
-void SystemOutput::printLog(COORD pos)
-{
-    FILE* viewport;
-    fopen_s(&viewport, LOG_VIEWPORT_FILE, "r");
-    char s[1024];
-    HANDLE      H = GetStdHandle(STD_OUTPUT_HANDLE);
-
-    COORD init_pos = pos;
-
-    if (viewport)
-    {
-        while ((fgets(s, sizeof s, viewport)) != NULL) {
-            SetConsoleCursorPosition(H, pos);
-            printf("%s", s);
-            pos.Y++;
-        }
-
-        pos = init_pos;
-        pos.X++;
-        pos.Y++;
-
-        for (int i = 0; i < messageLog.getSize(); i++)
-        {
-            SetConsoleCursorPosition(H, pos);
-            printf("%s", (messageLog.at(i).c_str()));
-            pos.Y++;
-        }
-
-
-    }
-    else printf("ERROR");
 }

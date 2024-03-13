@@ -24,6 +24,7 @@
     <ClCompile Include="Source\SystemInput.cpp" />
     <ClCompile Include="Source\SystemOutput.cpp" />
     <ClCompile Include="Source\Utils.cpp" />
+    <ClCompile Include="ViewportOutput.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\config.h" />
@@ -31,6 +32,7 @@
     <ClInclude Include="Include\SystemInput.h" />
     <ClInclude Include="Include\SystemOutput.h" />
     <ClInclude Include="Include\Utils.h" />
+    <ClInclude Include="ViewportOutput.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

@@ -3,7 +3,7 @@
 string Utils::to_lower(string str)
 {
     string ans = "";
-    for (int i = 0; i < str.length(); i++)
+    for (unsigned int i = 0; i < str.length(); i++)
         ans.push_back(tolower(str.at(i)));
     return ans;
 }

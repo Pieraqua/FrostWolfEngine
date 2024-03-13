@@ -18,6 +18,20 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\FrostWolfEngine.cpp" />
+    <ClCompile Include="Source\Log.cpp" />
+    <ClCompile Include="Source\SystemInput.cpp" />
+    <ClCompile Include="Source\SystemOutput.cpp" />
+    <ClCompile Include="Source\Utils.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Include\config.h" />
+    <ClInclude Include="Include\Log.h" />
+    <ClInclude Include="Include\SystemInput.h" />
+    <ClInclude Include="Include\SystemOutput.h" />
+    <ClInclude Include="Include\Utils.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -72,6 +86,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(SolutionDir)Include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -138,22 +153,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="FrostWolfEngine.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="Log.cpp" />
-    <ClCompile Include="SystemInput.cpp" />
-    <ClCompile Include="SystemOutput.cpp" />
-    <ClCompile Include="Utils.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="config.h" />
-    <ClInclude Include="Log.h" />
-    <ClInclude Include="SystemInput.h" />
-    <ClInclude Include="SystemOutput.h" />
-    <ClInclude Include="Utils.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

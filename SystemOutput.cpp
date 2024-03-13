@@ -14,7 +14,7 @@ void SystemOutput::printToConsole(string data, outputLevel level) {
 
 }
 
-SystemOutput::SystemOutput()
+SystemOutput::SystemOutput() : messageLog(25,19)
 {
     setMainViewport(MAIN_VIEWPORT_FILE);
 }
@@ -45,6 +45,11 @@ void SystemOutput::setConsoleOutputEnabled(outputLevel level, bool val)
 		printToConsole(infostr, outputLevel::INFO);
 		enabled[(int)level] = val;
 	}
+}
+
+void SystemOutput::printToLog(string data)
+{
+    messageLog.addLog(data);
 }
 
 int SystemOutput::cls()
@@ -148,6 +153,8 @@ void SystemOutput::printLog(COORD pos)
     char s[1024];
     HANDLE      H = GetStdHandle(STD_OUTPUT_HANDLE);
 
+    COORD init_pos = pos;
+
     if (viewport)
     {
         while ((fgets(s, sizeof s, viewport)) != NULL) {
@@ -155,6 +162,18 @@ void SystemOutput::printLog(COORD pos)
             printf("%s", s);
             pos.Y++;
         }
+
+        pos = init_pos;
+        pos.X++;
+        pos.Y++;
+
+        for (int i = 0; i < messageLog.getSize(); i++)
+        {
+            SetConsoleCursorPosition(H, pos);
+            printf("%s", (messageLog.at(i).c_str()));
+            pos.Y++;
+        }
+
 
     }
     else printf("ERROR");

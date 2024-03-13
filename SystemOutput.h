@@ -7,6 +7,7 @@ using namespace std;
 
 #include <Windows.h>
 #include "config.h"
+#include "Log.h"
 
 class SystemOutput
 {
@@ -21,6 +22,7 @@ public:
 
 	void printToConsole(string data, outputLevel level);
 	void setConsoleOutputEnabled(outputLevel level, bool val);
+	void printToLog(string data);
 	bool levelEnabled(outputLevel level);
 	static SystemOutput* getInstance();
 	int cls();
@@ -35,7 +37,7 @@ protected:
 
 private:
 	char mainImagePath[256];
-
+	Log messageLog;
 	void printMainViewport();
 	void printUserCommands();
 	void printLog(COORD);

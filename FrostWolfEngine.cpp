@@ -14,10 +14,13 @@ int main()
     inputModule->pause();
 
     outputModule->setMainViewport(FROSTWOLFLOGO_FILE);
+    outputModule->printToLog("Hello\n there!");
+    outputModule->printToLog("Press enter to continue.");
     outputModule->printViewports();
     inputModule->pause();
 
     outputModule->setMainViewport(MAIN_VIEWPORT_FILE);
+    outputModule->printToLog("Press Q to exit.");
     outputModule->printViewports();
     
     bool q_pressed = false;

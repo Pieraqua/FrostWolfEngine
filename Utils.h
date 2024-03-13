@@ -10,5 +10,6 @@ public:
 	// Rolls a x-sided die
 	static int rolldx(int x) { return rand() % x; }	
 	static string to_lower(string str);
+	static char to_lower(char c);
 };
 

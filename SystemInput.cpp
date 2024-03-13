@@ -1,5 +1,6 @@
 #include "SystemInput.h"
 
+
 SystemInput* SystemInput::systemInputModuleSingleton = nullptr;
 
 SystemInput* SystemInput::getInstance()
@@ -62,6 +63,11 @@ vector<string> SystemInput::getUserInput()
 	}
 #endif
 	return ans;
+}
+
+char SystemInput::getKeyPressed()
+{
+	return _getch();
 }
 
 SystemInput::SystemInput()

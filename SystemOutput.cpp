@@ -14,7 +14,7 @@ void SystemOutput::printToConsole(string data, outputLevel level) {
 
 }
 
-SystemOutput::SystemOutput() : messageLog(25,19)
+SystemOutput::SystemOutput() : messageLog(23,19)
 {
     setMainViewport(MAIN_VIEWPORT_FILE);
 }

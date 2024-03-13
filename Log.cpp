@@ -2,49 +2,56 @@
 
 Log::Log(int width, int height) : width(width), height(height)
 {
+	log = new string[height];
+	end = 0;
+	start = 0;
+}
 
+Log::~Log()
+{
+	delete[] log;
 }
 
 int Log::getSize()
 {
-	return log.size();
+	return end > start ? end - start : height - start + end;
 }
 
 string Log::at(int index)
 {
-	return log.at(index);
+	if (index > getSize()) return "";
+	return log[start + index < height ? start + index : end - (getSize() - index)];
 }
 
 void Log::addLog(string new_log)
 {
-	int end = 0;
-	char* aux_log = new char[width + 1];
+	int found_newline = 0;
+	while (new_log.find('\n') != -1 || new_log.size() > width) {
+		// Erase last in line
+		if (end == start) start++;
 
-	aux_log[0] = '\0';
-	for (char c : new_log)
-	{
-		if (c == '\n')
-		{
-			aux_log[end] = '\0';
-			end = 0;
+		found_newline = new_log.find('\n');
 
-			while (log.size() >= height)
-				log.pop_back();
-			log.push_front(string(aux_log));
-			continue;
+		if (found_newline != -1) {
+			log[end++] = new_log.substr(0, found_newline);
+			new_log = new_log.substr(found_newline + 1, new_log.size() - found_newline);
 		}
-
-		aux_log[end++] = c;
-		if (end == width)
+		else
 		{
-			aux_log[end] = '\0';
-			end = 0;
-			while (log.size() >= height)
-				log.pop_back();
-			log.push_front(string(aux_log));
-			continue;
+			found_newline = new_log.substr(0, width).rfind(' ');
+			if (found_newline == -1) found_newline = width;
+			log[end++] = new_log.substr(0, found_newline);
+			new_log = new_log.substr(found_newline + 1, new_log.size() - found_newline);
 		}
+		// loop
+		if (start >= height) start = 0;
+		if (end >= height) end = 0;
 	}
 
-	delete[](aux_log);
+	// Erase last in line
+	if (end == start) start++;
+	log[end++] = new_log;
+	// loop
+	if (start >= height) start = 0;
+	if (end >= height) end = 0;
 }
